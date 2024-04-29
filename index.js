@@ -16,19 +16,12 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 app.post('/api/fileanalyse', upload.single('upfile'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded.');
-  }
-
-  const fileName = req.file.originalname;
-  const fileType = mimeTypes.lookup(fileName);
-  const fileSize = req.file.size;
-
-  res.status(200).json({
-    name: fileName,
-    type: fileType,
-    size: fileSize
-  });
+  const {originalname, mimetype, size } = req.file;
+  res.json({
+    name:originalname,
+    type:mimetype,
+    size:size
+  })
 });
 
 const port = process.env.PORT || 3000;
