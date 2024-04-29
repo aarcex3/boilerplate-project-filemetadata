@@ -18,10 +18,10 @@
         </p>
         <div class="view">
           <h3 id="output"></h3>
-          <form action="/api/fileanalyse" method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <button type="submit">Upload</button>
-          </form>          
+          <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse">
+            <input id="inputfield" type="file" name="upfile">
+            <input id="button" type="submit" value="Upload">
+          </form>     
         </div>
       </div>
       <div class="footer">

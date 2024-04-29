@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post('/api/fileanalyse', upload.single('file'), (req, res) => {
+app.post('/api/fileanalyse', upload.single('upfile'), (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
@@ -24,7 +24,7 @@ app.post('/api/fileanalyse', upload.single('file'), (req, res) => {
   const fileType = mimeTypes.lookup(fileName);
   const fileSize = req.file.size;
 
-  res.json({
+  res.status(200).json({
     name: fileName,
     type: fileType,
     size: fileSize
